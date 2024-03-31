@@ -1,0 +1,54 @@
+<div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title"> Количка </h5>
+            </div>
+            
+            <div class="modal-body">
+
+                <!-- Cart items -->
+                <div class="row mb-4 item-wrapper" *ngFor="let item of items$ | async">
+                    <div class="col p-0">
+                        <div class="container">
+
+                            <!-- Image + Title -->
+                            <div class="row mb-1">
+                                <div class="col p-0 d-flex align-items-center">
+                                    <img [src]="item.imageData | blobToUrl" width="50px" class="me-3">
+                                    <h6>{{ item.title }}</h6>
+                                </div>
+                            </div>
+
+                            <!-- Price + Quantity + Remove Btn -->
+                            <div class="row">
+                                <div class="col p-0 d-flex align-items-center justify-content-between">
+                                    <div class="quantity-input">
+                                        <button class="btn btn-sm" type="button" (click)="setQuantity(item.id, item.quantity-1)"> - </button>
+                                        {{ item.quantity }}
+                                        <button class="btn btn-sm" type="button" (click)="setQuantity(item.id, item.quantity+1)"> + </button>
+                                    </div>
+                                    <div class="price-wrapper">
+                                        {{ (item.price * item.quantity).toFixed(2) }} лв
+                                    </div>
+                                    <div class="remove-item-wrapper">
+                                        <button type="button" class="btn-close" (click)="deleteFromCart(item.id)"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-center" *ngIf="(items$ | async)?.length == 0"> Количката е празна. </p>
+                <div class="card-footer d-flex justify-content-between">
+                    <button class="btn btn-sm btn-secondary" data-bs-dismiss="modal" aria-label="Close"> Назад </button>
+                    <a class="btn btn-sm btn-danger" data-bs-dismiss="modal" role="button"
+                    [class.disabled]="(items$ | async)?.length === 0" [routerLink]="['/order']"> Поръчай </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

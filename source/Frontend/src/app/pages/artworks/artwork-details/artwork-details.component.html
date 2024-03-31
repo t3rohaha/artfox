@@ -1,0 +1,23 @@
+<div class="container mb-5">
+    <h2> Детайли </h2>
+    <div class="row">
+        <div class="col-12 col-md-6 mb-4 mb-md-0" *ngIf="artworkResponse.images.length != 0">
+            <app-image-gallery [imagesResponse]="artworkResponse.images"></app-image-gallery>
+        </div>
+        <div class="col-12 col-md-6 d-flex flex-column gap-3">
+            <h3> {{ artworkResponse.title }} </h3>
+            <div class="price"> {{ artworkResponse.price }} лв </div>
+            <div class="delivery-note"> С включени данъци. <span>Доставката</span> се изчислява при плащане. </div>
+            <div class="quantity-input">
+                <button class="btn" type="button" (click)="setQuantity(quantity-1)"> - </button>
+                {{ quantity }}
+                <button class="btn" type="button" (click)="setQuantity(quantity+1)"> + </button>
+            </div>
+            <button class="btn btn-danger" (click)="buy()"> Купи </button>
+            <button class="btn btn-outline-dark" (click)="addToCart()" data-bs-toggle="modal" data-bs-target="#cartModal"> Добавяне в количката </button>
+            <div class="description"> {{ artworkResponse.description }} </div>
+        </div>
+    </div>
+</div>
+
+<app-get-random-artworks [title]="'Подобни'"></app-get-random-artworks>

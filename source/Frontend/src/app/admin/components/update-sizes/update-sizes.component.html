@@ -1,0 +1,56 @@
+<div class="container-fluid p-0">
+
+    <div class="row mb-4">
+
+        <!-- WIDTH -->
+        <div class="col">
+            <div class="form-floating">
+                <input class="form-control" id="width" name="width" type="number"
+                [(ngModel)]="widthInput">
+                <label class="form-label" for="width"> Ширина </label>
+            </div>
+        </div>
+
+        <!-- HEIGHT -->
+        <div class="col">
+            <div class="form-floating">
+                <input class="form-control" id="height" name="height" type="number"
+                [(ngModel)]="heightInput">
+                <label class="form-label" for="height"> Височина </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADD SIZE BUTTON -->
+    <div class="row mb-4">
+        <div class="col">
+            <button class="btn btn-sm btn-primary w-100" type="button" (click)="onSizeCreate()"> Добави размер </button>
+        </div>
+    </div>
+
+    <div class="row mb-4" *ngIf="sizes.length > 0">
+        <div class="col">
+            <table class="table table-borderless">
+
+                <!-- TABLE HEAD -->
+                <thead>
+                    <tr>
+                        <th scope="col"> Ширина </th>
+                        <th scope="col"> Височина </th>
+                    </tr>
+                </thead>
+
+                <!-- TABLE BODY -->
+                <tbody>
+                    <tr *ngFor="let size of sizes; index as i">
+                        <td>{{ size.width }}</td>
+                        <td>{{ size.height }}</td>
+                        <td><button class="btn-close" type="button" (click)="onSizeDelete(i)"></button></td>
+                    </tr>
+                </tbody>
+                
+            </table>
+        </div>
+    </div>
+
+</div>

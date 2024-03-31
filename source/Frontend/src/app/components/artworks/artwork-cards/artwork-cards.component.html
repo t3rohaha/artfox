@@ -1,0 +1,24 @@
+<div class="container-fluid p-0">
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-lg-4 g-2 mb-3">
+        @for (a of artworks; track a.id) {
+            <div class="col">
+                <a [routerLink]="['/artworks/details/', a.id]" class="card-link">
+                    <div class="card h-100 d-flex flex-column">
+                        <img [src]="a.images[0].imageData| blobToUrl" class="card-img-top flex-grow-1">
+                        <div class="card-body flex-grow-0">
+                            <h2 class="card-title mb-1"> {{ a.title }} </h2>
+                            <p class="card-text price mb-1"> {{ a.price }} <span class="currency"> лв </span></p>
+                            <div class="btn-container">
+                                <button class="btn btn-sm btn-danger" type="button"
+                                data-bs-toggle="modal" data-bs-target="#cartModal"
+                                (click)="addToCart($event, a.id)">
+                                    Добави в количка
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<nav class="navbar navbar-sm d-md-none fixed-top">
+    <div class="container">
+
+        <!-- Menu Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="modal" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Logo -->
+        <a class="navbar-brand" [routerLink]="['/']"><img src="favicon.ico" width="60"></a>
+
+        <!-- Cart -->
+        <app-cart-icon></app-cart-icon>
+    </div>
+</nav>
+
+<!-- Menu -->
+<div class="modal fade" id="menu" tabindex="-1" aria-labelledby="menu" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex flex-column gap-3">
+                <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#menu" [routerLink]="['/']"> Начало </a>
+                <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#menu" [routerLink]="['/artworks/all']"> Продукти </a>
+                <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#menu" [routerLink]="['/contacts']"> Контакти </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container d-none d-md-block navbar-md">
+    <div class="row quote-md">
+        <!-- QUOTE -->
+        <div class="col">
+            <p class="quote">“Creativity is magic. Don't examine it too closely.”</p>
+        </div>
+    </div>
+
+    <div class="row py-2">
+        <!-- LOGO -->
+        <div class="col-md-4 logo-md">
+            <a class="navbar-brand" [routerLink]="['/']"><img src="/assets/logo.png" width="100px"></a>
+        </div>
+
+        <!-- MENU -->
+        <div class="col-md-4 menu-md">
+            <a class="btn btn-sm btn-danger" [routerLink]="['/']"> Начало </a>
+            <a class="btn btn-sm btn-danger" [routerLink]="['/artworks/all']"> Продукти </a>
+            <a class="btn btn-sm btn-danger" [routerLink]="['/contacts']"> Контакти </a>
+        </div>
+
+        <!-- CART -->
+        <div class="col-md-4 cart-md">
+            <app-cart-icon></app-cart-icon>
+        </div>
+    </div>
+</div>

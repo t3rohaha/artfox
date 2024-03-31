@@ -1,0 +1,8 @@
+<div class="cart-icon-container">
+    <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#cartModal">
+        <img src="/assets/cart.png" alt="cart" width="30px">
+        <span class="cart-items-count" [ngClass]="{'cart-empty': itemsCount == 0}">
+            {{ itemsCount }}
+        </span>
+    </a>
+</div>

@@ -1,0 +1,12 @@
+h2 {
+    text-decoration: underline;
+    color: #dc3545;
+}
+
+a {
+    color: #dc3545;
+}
+
+textarea {
+    height: 200px;
+}

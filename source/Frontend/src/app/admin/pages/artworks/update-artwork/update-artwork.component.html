@@ -1,0 +1,69 @@
+<form (ngSubmit)="onSubmit()" *ngIf="artwork">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1> Промени Картина </h1>
+
+                <!-- TITLE -->
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-4">
+                            <input class="form-control" id="title" name="title" required type="text"
+                            [(ngModel)]="artwork.title">
+                            <label for="title" class="form-label"> Заглавие </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Price -->
+                <div class="row">
+                    <div class="col-md">
+                        <div class="form-floating mb-4">
+                            <input class="form-control" id="price" name="price" required step="0.01" type="number"
+                            [(ngModel)]="artwork.price">
+                            <label for="price" class="form-label"> Цена </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DESCRIPTION -->
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-4">
+                            <textarea class="form-control" id="query" name="query" required style="height: 200px;"
+                            [(ngModel)]="artwork.description"></textarea>
+                            <label class="form-label" for="query"> Описание </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IMAGES -->
+                <app-update-images *ngIf="imagesRequest" [images]="imagesRequest.images"></app-update-images>
+
+                <!-- SIZES -->
+                <app-update-sizes #updateSizesComponent [sizes]="artwork.sizes"></app-update-sizes>
+
+                <!-- SUBMIT -->
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-warning" type="submit"> Запази </button>
+                    <button class="btn btn-danger" data-bs-target="#deleteArtworkModal" data-bs-toggle="modal" type="button"> Изтрий </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- MODAL -->
+<div class="modal" id="deleteArtworkModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p> Ако изтриете продукта, той не може да бъде възстановен. Искате ли да продължите? </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button"> Назад </button>
+                <button class="btn btn-danger" data-bs-dismiss="modal" type="button" (click)="onDelete()"> Изтрий </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+# MacOS
+**/.DS_Store
+
+# Angular
+**/.angular
+**/node_modules
+
+# .NET
+**/bin
+**/obj

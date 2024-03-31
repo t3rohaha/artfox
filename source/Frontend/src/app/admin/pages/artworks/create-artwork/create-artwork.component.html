@@ -1,0 +1,52 @@
+<form (ngSubmit)="onSubmit()">
+    <div class="container">
+        <div class="row">
+            <div class="col" style="max-width: 600px;">
+
+                <h1> Добави продукт </h1>
+
+                <!-- TITLE -->
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-4">
+                            <input class="form-control" id="title" name="title" required type="text"
+                            [(ngModel)]="artwork.title">
+                            <label class="form-label" for="title"> Заглавие </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Price -->
+                <div class="row">
+                    <div class="col-md">
+                        <div class="form-floating mb-4">
+                            <input class="form-control" id="price" name="price" required step="0.01" type="number"
+                            [(ngModel)]="artwork.price">
+                            <label class="form-label" for="price"> Цена </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DESCRIPTION -->
+                <div class="row">
+                    <div class="col">
+                        <div class="form-floating mb-4">
+                            <textarea class="form-control" id="query" name="query" required style="height: 200px;"
+                            [(ngModel)]="artwork.description"></textarea>
+                            <label class="form-label" for="query"> Описание </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IMAGES -->
+                <app-update-images [images]="imagesRequest.images"></app-update-images>
+
+                <!-- SIZES -->
+                <app-update-sizes #updateSizesComponent [sizes]="artwork.sizes"></app-update-sizes>
+
+                <!-- SUBMIT -->
+                <button class="btn btn-danger w-100" type="submit"> Запази </button>
+            </div>
+        </div>
+    </div>
+</form>

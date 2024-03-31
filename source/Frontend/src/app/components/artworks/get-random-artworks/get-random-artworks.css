@@ -1,0 +1,10 @@
+h2 {
+    text-decoration: underline;
+    color: #dc3545;
+}
+
+.btn-container {
+    width: auto;
+    display: flex;
+    justify-content: end;
+}

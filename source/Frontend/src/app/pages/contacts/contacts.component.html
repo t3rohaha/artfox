@@ -1,0 +1,49 @@
+<div class="container">
+
+    <h2> Контакти </h2>
+
+    <p>Ако имате въпрос, моля задайте го тук или се обадете на телефон: <a href="tel:+35988888888">+359 88 888 888</a></p>
+
+    <form novalidate #contactForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+
+            <!-- NAME -->
+            <div class="col-md">
+                <div class="form-floating mb-3">
+                    <input autocomplete="name" class="form-control" id="name" name="name" required type="text"
+                    #name="ngModel" [(ngModel)]="contact.name" [class.is-invalid]="name.invalid && name.dirty">
+                    <label class="form-label" for="name"> Име * </label>
+                </div>
+            </div>
+
+            <!-- EMAIL -->
+            <div class="col-md">
+                <div class="form-floating mb-3">
+                    <input autocomplete="email" class="form-control" id="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required type="email" 
+                    #email="ngModel" [class.is-invalid]="email.invalid && email.dirty" [(ngModel)]="contact.email">
+                    <label class="form-label" for="email"> Имейл * </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- QUERY -->
+        <div class="row">
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" id="query" name="query" required style="height: 150px"
+                    #query="ngModel" [class.is-invalid]="query.invalid && query.dirty" [(ngModel)]="contact.content" ></textarea>
+                    <label class="form-label" for="query"> Запитване * </label>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SUBMIT -->
+        <button class="btn btn-danger" type="submit" [disabled]="contactForm.invalid || processingRequest">
+            <span aria-hidden="true" class="spinner-border spinner-border-sm" role="status"
+                *ngIf="processingRequest">
+            </span>
+            Изпрати
+        </button>
+
+    </form>
+</div>

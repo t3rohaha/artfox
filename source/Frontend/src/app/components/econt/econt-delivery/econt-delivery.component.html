@@ -1,0 +1,31 @@
+<p>Доставките се извършват с <img src="/assets/econt.png" width="55px"></p>
+
+<!-- OFFICE RADIO -->
+<div class="form-check">
+    <input class="form-check-input" type="radio" id="toOffice" name="deliveryType" value="office"
+        (change)="onDeliveryPriceChange()" [checked]="toOffice">
+    <label class="form-check-label" for="toOffice"> До Офис </label>
+</div>
+
+<!-- ADDRESS RADIO -->
+<div class="form-check mb-3">
+    <input class="form-check-input" type="radio" id="toAddress" name="deliveryType" value="address"
+        (change)="onDeliveryPriceChange()" [checked]="!toOffice">
+    <label class="form-check-label" for="toAddress"> До Адрес </label>
+</div>
+
+<!-- OFFICE SELECT -->
+<div class="form-floating mb-3" *ngIf="toOffice">
+    <input type="text" name="office" id="office-select" class="form-control" [(ngModel)]="address" #officeInput="ngModel" readonly
+    data-bs-toggle="modal" data-bs-target="#econtOfficeSelectModal">
+    <label for="office-select" class="form-label"> Моля изберете офис * </label>
+</div>
+
+<app-econt-office-select [offices]="offices" (selectOfficeEvent)="onOfficeSelect($event)"></app-econt-office-select>
+
+<!-- ADDRESS INPUT -->
+<div class="form-floating mb-3" *ngIf="!toOffice">
+    <input type="text" name="address" class="form-control" (input)="onAddressInput(addressInput.value)" #addressInput="ngModel" [(ngModel)]="address"
+    [class.is-invalid]="addressInput.invalid && addressInput.dirty" required>
+    <label for="address" class="form-label"> Адрес * </label>
+</div>

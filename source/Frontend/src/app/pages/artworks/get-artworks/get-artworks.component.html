@@ -1,0 +1,17 @@
+<div class="container">
+
+    <h2> Продукти </h2>
+
+    <div class="row">
+        <div class="col">
+            <app-artwork-cards [artworksResponse]="artworksShown"></app-artwork-cards>
+        </div>
+    </div>
+
+    <div class="pagination">
+        <button class="btn btn-sm btn-danger" (click)="prevPage()" [disabled]="currentPage <= 0"> &leftarrow; </button>
+        <span> Страница {{ currentPage + 1 }} от {{ totalPages }} </span>
+        <button class="btn btn-sm btn-danger" (click)="nextPage()" [disabled]="currentPage >= totalPages - 1"> &rightarrow; </button>
+    </div>
+
+</div>

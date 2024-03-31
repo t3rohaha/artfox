@@ -1,0 +1,13 @@
+input.form-control:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.office {
+    cursor: pointer;
+    font-size: small;
+}
+
+.office:hover {
+    background-color: aliceblue;
+}

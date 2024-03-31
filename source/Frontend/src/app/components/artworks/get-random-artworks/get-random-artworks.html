@@ -1,0 +1,15 @@
+<div class="container">
+
+    <h2> {{ title }} </h2>
+
+    <div class="row">
+        <app-artwork-cards [artworksResponse]="artworks"></app-artwork-cards>
+    </div>
+
+    <div class="row my-1">
+        <div class="col text-center">
+            <a class="btn btn-sm btn-danger" [routerLink]="['/artworks/all']"> Покажи всички </a>
+        </div>
+    </div>
+
+</div>

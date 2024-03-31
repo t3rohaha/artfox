@@ -1,0 +1,105 @@
+<form #orderForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="mb-3"> Данни </h2>
+
+                <!-- FIRST NAME INPUT -->
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="firstName" name="firstName" required type="text" 
+                    #firstName="ngModel" [(ngModel)]="order.firstName">
+                    <label class="form-label" for="firstName"> Име </label>
+                </div>
+
+                <!-- LAST NAME INPUT -->
+                <div class="form-floating mb-3">
+                    <input class="form-control" id="lastName" name="lastName" required type="text"
+                    #lastName="ngModel" [(ngModel)]="order.lastName">
+                    <label class="form-label" for="lastName"> Фамилия </label>
+                </div>
+
+                <!-- TEL INPUT -->
+                <div class="form-floating mb-3">
+                    <input autocomplete="tel" class="form-control" id="tel" name="tel" required type="tel"
+                    #tel="ngModel" [(ngModel)]="order.tel">
+                    <label class="form-label" for="tel"> Телефон </label>
+                </div>
+
+                <!-- EMAIL INPUT -->
+                <div class="form-floating mb-3">
+                    <input autocomplete="email" class="form-control" id="email" name="email" type="email" 
+                    [(ngModel)]="order.email" #email="ngModel" required>
+                    <label class="form-label" for="email"> Имейл </label>
+                </div>
+
+                <!-- DELIVERY INPUT -->
+                <app-econt-delivery
+                    [address]="order.address" 
+                    (addressChange)="onAddressChange($event)"
+                    (deliveryPriceChange)="onDeliveryPriceChange($event)">
+                </app-econt-delivery>
+
+                <!-- STATUS SELECT -->
+                <div class="form-floating">
+                    <select class="form-select" id="status" name="status" [(ngModel)]="order.status">
+                        <option selected> {{ order.status }} </option>
+                        @for (status of statuses; track $index) {
+                        <option *ngIf="order.status != status" [value]="status"> {{ status }} </option>
+                        }
+                    </select>
+                    <label for="status"> Моля изберете статус </label>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h2 class="mb-3 summary-heading"> Обобщение </h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"> ПРОДУКТ </th>
+                            <th class="price-th" scope="col"> ОБЩО </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of orderItems">
+                            <td class="title"> {{ item.title }} <span class="quantity">x{{ item.quantity }}</span></td>
+                            <td class="price-td"> {{ (item.price * item.quantity).toFixed(2) }} лв </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td> Доставка </td>
+                            <td class="price-td"> {{ order.deliveryPrice.toFixed(2) }} лв </td>
+                        </tr>
+                        <tr>
+                            <td class="total"> ОБЩО </td>
+                            <td class="price total-price"> {{ getTotal().toFixed(2) }} лв </td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <!-- SUBMIT -->
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-warning" type="submit"
+                    [disabled]="orderForm.invalid || order.address == ''"> Обнови </button>
+                    <button class="btn btn-danger" data-bs-target="#deleteOrderModal" data-bs-toggle="modal" type="button"> Изтрий </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- MODAL -->
+<div class="modal" id="deleteOrderModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p> Ако изтриете поръчката, тя не може да бъде възстановена. Искате ли да продължите? </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal" type="button"> Назад </button>
+                <button class="btn btn-danger" data-bs-dismiss="modal" type="button" (click)="onDelete()"> Изтрий </button>
+            </div>
+        </div>
+    </div>
+</div>
